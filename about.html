@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About — Explore Universe</title>
+<meta name="description" content="About Explore Universe: an open-source, dependency-free interactive tour of the cosmos, and the sources behind its facts." />
+<meta name="theme-color" content="#04050d" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas class="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<div class="page">
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="orb" aria-hidden="true"></span>
+        <span class="brand-name">Explore <b>Universe</b></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="solar-system.html">Solar System</a>
+        <a href="deep-space.html">Deep Space</a>
+        <a href="cosmos.html">Cosmos</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary btn-sm" href="solar-system.html">Start exploring</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="eyebrow reveal">About</span>
+        <h1 class="reveal" data-d="1">A small site for a <span class="grad-text">very large</span> universe</h1>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:30px">
+      <div class="wrap">
+        <div class="about-hero">
+          <div>
+            <p class="section-lead reveal" data-d="1">Explore Universe is a free, open-source website that turns the cosmos into something you can play with. Instead of just reading about planets, you watch them orbit. Instead of a list of galaxies, you filter and search them. Instead of numbers you cannot picture, you slide a control and feel the scale change beneath your fingers.</p>
+            <p class="section-lead reveal" data-d="2" style="margin-top:16px">Everything runs right in the browser. There is no backend, no database and no tracking — just a handful of plain files you can read, fork and make your own.</p>
+            <div class="tech-list reveal" data-d="3">
+              <span>HTML5</span><span>CSS3</span><span>Vanilla JavaScript</span><span>Canvas 2D</span><span>No frameworks</span><span>No dependencies</span>
+            </div>
+          </div>
+          <div class="split-visual reveal" data-d="2">
+            <div class="mini-orbit">
+              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+              <div class="core"></div>
+              <div class="body b3"></div>
+              <div class="body b2"></div>
+              <div class="body b1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <h2 class="section-title reveal" style="margin-bottom:30px">What's inside</h2>
+        <div class="grid grid-2">
+          <div class="credit reveal">
+            <div class="badge-i"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b9a4ff" stroke-width="1.8"><circle cx="12" cy="12" r="2.6"/><ellipse cx="12" cy="12" rx="10" ry="4.4"/></svg></div>
+            <div><h4>An animated orrery</h4><p>A canvas engine that draws the Sun and eight planets at true relative orbital speeds, with hover, click and live controls.</p></div>
+          </div>
+          <div class="credit reveal" data-d="1">
+            <div class="badge-i"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg></div>
+            <div><h4>A searchable gallery</h4><p>Fifteen deep-space objects — galaxies, nebulae, clusters, black holes and exoplanets — each with hand-written, factual copy.</p></div>
+          </div>
+          <div class="credit reveal" data-d="2">
+            <div class="badge-i"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.8"><path d="M4 20L20 4M4 4l16 16"/></svg></div>
+            <div><h4>A scale explorer</h4><p>A slider that steps from a single planet up to the observable universe, with real measured sizes alongside the visuals.</p></div>
+          </div>
+          <div class="credit reveal" data-d="3">
+            <div class="badge-i"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+            <div><h4>A universe timeline</h4><p>The whole story from the Big Bang to today, told in eleven stops you can scroll through.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sources" style="padding-top:0">
+      <div class="wrap">
+        <span class="eyebrow reveal">Sources</span>
+        <h2 class="section-title reveal" data-d="1">Where the facts come from</h2>
+        <p class="section-lead reveal" data-d="2" style="margin-bottom:26px">Figures are rounded, standard values drawn from public science references. For anything precise or up to date, go straight to the primary sources below.</p>
+        <div class="grid grid-2">
+          <div class="card reveal"><h3>NASA — Solar System Exploration</h3><p>Planet sizes, distances, temperatures, moon counts and mission data.</p></div>
+          <div class="card reveal" data-d="1"><h3>NASA / ESA — Hubble &amp; James Webb</h3><p>Imaging and measurements of galaxies, nebulae and star-forming regions.</p></div>
+          <div class="card reveal" data-d="2"><h3>NASA Exoplanet Archive</h3><p>Confirmed exoplanets, their host stars, distances and orbital properties.</p></div>
+          <div class="card reveal" data-d="3"><h3>Event Horizon Telescope</h3><p>Imaging of black holes, including the first-ever image of M87*.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="credits" style="padding-top:0">
+      <div class="wrap">
+        <div class="band reveal">
+          <h2>Open source, and yours to build on</h2>
+          <p>The whole project is a few plain files. Fork it, add your own planets, swap the data, or ship it to the web as-is. Contributions and corrections are always welcome.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn-ghost" href="index.html">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="about">
+          <a class="brand" href="index.html" style="margin-bottom:14px">
+            <span class="orb" aria-hidden="true"></span>
+            <span class="brand-name">Explore <b>Universe</b></span>
+          </a>
+          <p>An interactive, open-source tour of the cosmos. Built with plain HTML, CSS and JavaScript — no frameworks, no trackers.</p>
+        </div>
+        <div><h4>Explore</h4><a href="solar-system.html">Solar System</a><a href="deep-space.html">Deep Space</a><a href="cosmos.html">Cosmic Scale</a></div>
+        <div><h4>Learn</h4><a href="cosmos.html#timeline-section">Universe Timeline</a><a href="about.html">About</a><a href="about.html#sources">Sources</a></div>
+        <div><h4>Project</h4><a href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">GitHub repository</a><a href="about.html#credits">Credits</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Explore Universe · Made for curious minds.</span>
+        <span class="made"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg> Data: NASA · ESA</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/starfield.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
