@@ -3,36 +3,38 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Explore Universe — Journey Through Space</title>
-<meta name="description" content="Explore Universe is an interactive journey through space — a live solar system orrery, deep-space gallery, cosmic scale explorer and the story of the universe." />
-<meta name="theme-color" content="#04050d" />
-<meta property="og:title" content="Explore Universe — Journey Through Space" />
-<meta property="og:description" content="An interactive journey through the cosmos: planets, galaxies, nebulae, black holes and the scale of everything." />
+<title>Explore Universe — Fly Through the Cosmos</title>
+<meta name="description" content="An immersive, scroll-driven flight through the universe — past the Moon and the gas giants, through a nebula, into a black hole, out to the edge of the observable universe." />
+<meta name="theme-color" content="#03040c" />
+<meta property="og:title" content="Explore Universe — Fly Through the Cosmos" />
+<meta property="og:description" content="Scroll to travel. Fly past the planets, through nebulae, into a black hole, and out to the edge of everything we can see." />
 <meta property="og:type" content="website" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/journey.css" />
 </head>
-<body>
-<canvas class="bg-canvas" aria-hidden="true"></canvas>
-<div class="bg-glow" aria-hidden="true"></div>
+<body class="journey">
+<canvas id="space" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
 
 <div class="page">
   <!-- ================= NAV ================= -->
-  <header class="nav">
+  <header class="nav nav--float">
     <div class="wrap">
       <a class="brand" href="index.html">
         <span class="orb" aria-hidden="true"></span>
         <span class="brand-name">Explore <b>Universe</b></span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
-        <a href="index.html">Home</a>
+        <a href="index.html">Journey</a>
         <a href="solar-system.html">Solar System</a>
         <a href="deep-space.html">Deep Space</a>
         <a href="cosmos.html">Cosmos</a>
         <a href="about.html">About</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn btn-primary btn-sm" href="solar-system.html">Start exploring</a>
+        <span class="live-dot" aria-hidden="true"><i></i> In flight</span>
+        <a class="btn btn-primary btn-sm" href="deep-space.html">Deep space</a>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -40,208 +42,90 @@
     </div>
   </header>
 
-  <main>
-    <!-- ================= HERO ================= -->
-    <section class="hero">
-      <div class="hero-deco" aria-hidden="true">
-        <div class="grid-line"></div>
-        <div class="big"></div>
-        <div class="ring"></div>
-        <div class="moon"></div>
-      </div>
-      <div class="wrap">
-        <div class="hero-inner">
-          <span class="tag reveal"><span class="dot"></span> An interactive map of everything</span>
-          <h1 class="reveal" data-d="1">Explore the <span class="grad-text">Universe</span>, one world at a time.</h1>
-          <p class="lead reveal" data-d="2">Fly past the planets, drift through nebulae, stare into black holes and measure yourself against the largest things that exist. All in your browser — no downloads, no fuss.</p>
-          <div class="hero-actions reveal" data-d="3">
-            <a class="btn btn-primary" href="solar-system.html">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/></svg>
-              Launch the solar system
-            </a>
-            <a class="btn btn-ghost" href="deep-space.html">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg>
-              Dive into deep space
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-hint" aria-hidden="true">
-        <span class="mouse"></span>
-        Scroll to explore
-      </div>
-    </section>
+  <!-- ================= HUD ================= -->
+  <div class="hud" aria-hidden="true">
+    <div class="hud-row"><span class="k">Velocity</span><span class="v" id="hudSpeed">0.08 c</span></div>
+    <div class="hud-row"><span class="k">Distance from Earth</span><span class="v" id="hudDist">400 km</span></div>
+    <div class="hud-row"><span class="k">Current location</span><span class="v" id="hudLoc">Low Earth Orbit</span></div>
+  </div>
 
-    <!-- ================= STATS ================= -->
-    <section class="section" style="padding-top:0">
-      <div class="wrap">
-        <div class="stats">
-          <div class="stat reveal">
-            <div class="num"><b data-count="8">0</b></div>
-            <div class="label">Planets orbiting our Sun</div>
-          </div>
-          <div class="stat reveal" data-d="1">
-            <div class="num"><b data-count="200" data-suffix="+ billion">0</b></div>
-            <div class="label">Stars in the Milky Way</div>
-          </div>
-          <div class="stat reveal" data-d="2">
-            <div class="num"><b data-count="2" data-suffix=" trillion">0</b></div>
-            <div class="label">Galaxies in the observable universe</div>
-          </div>
-          <div class="stat reveal" data-d="3">
-            <div class="num"><b data-count="13.8" data-suffix=" billion">0</b></div>
-            <div class="label">Years since the Big Bang</div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- ================= cockpit framing ================= -->
+  <div class="reticle" aria-hidden="true"><span></span></div>
+  <div class="brackets" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-    <!-- ================= FEATURES ================= -->
-    <section class="section">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:52px">
-          <span class="eyebrow reveal">What you can explore</span>
-          <h2 class="section-title reveal" data-d="1">Four ways to wander the cosmos</h2>
-          <p class="section-lead reveal" data-d="2">Every section is interactive — click, drag, filter and zoom your way around. Built to be played with.</p>
-        </div>
-        <div class="grid grid-4">
-          <a class="card reveal" href="solar-system.html">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#b9a4ff" stroke-width="1.7"><circle cx="12" cy="12" r="2.6"/><ellipse cx="12" cy="12" rx="10" ry="4.4"/><circle cx="22" cy="12" r="1.4" fill="#b9a4ff"/></svg></div>
-            <h3>Solar System</h3>
-            <p>A live, moving orrery. Watch the planets orbit and click any one for its facts.</p>
-            <span class="link">Open the orrery <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-          <a class="card reveal" data-d="1" href="deep-space.html">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
-            <h3>Deep Space</h3>
-            <p>Galaxies, nebulae, star clusters, black holes and distant exoplanets — filter and search.</p>
-            <span class="link">Enter deep space <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-          <a class="card reveal" data-d="2" href="cosmos.html">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.7"><path d="M4 20L20 4M4 4l16 16"/><circle cx="12" cy="12" r="2.4" fill="#fbbf24" stroke="none"/></svg></div>
-            <h3>Cosmic Scale</h3>
-            <p>Slide from a single planet up to the observable universe and feel how small we really are.</p>
-            <span class="link">Measure the cosmos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-          <a class="card reveal" data-d="3" href="cosmos.html#timeline-section">
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
-            <h3>Universe Timeline</h3>
-            <p>From the Big Bang to today — the whole 13.8-billion-year story, in order.</p>
-            <span class="link">Follow the timeline <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </a>
-        </div>
-      </div>
-    </section>
+  <!-- ================= stage rail ================= -->
+  <nav class="rail" id="rail" aria-label="Journey stages"></nav>
 
-    <!-- ================= ORRERY TEASER ================= -->
-    <section class="section">
-      <div class="wrap">
-        <div class="split">
-          <div>
-            <span class="eyebrow reveal">The solar system</span>
-            <h2 class="section-title reveal" data-d="1">Watch the planets move in real time</h2>
-            <p class="section-lead reveal" data-d="2">Our orrery runs each planet at its true relative speed — fast Mercury, slow Neptune. Pause it, speed it up, hide the orbits, and click any world to read its story.</p>
-            <div class="hero-actions reveal" data-d="3" style="margin-top:26px">
-              <a class="btn btn-primary" href="solar-system.html">Open the interactive orrery</a>
-            </div>
-          </div>
-          <div class="split-visual reveal" data-d="2">
-            <div class="mini-orbit">
-              <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-              <div class="core"></div>
-              <div class="body b3"></div>
-              <div class="body b2"></div>
-              <div class="body b1"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- ================= captions ================= -->
+  <div id="stageLayers" aria-hidden="true"></div>
 
-    <!-- ================= DEEP SPACE TEASER ================= -->
-    <section class="section">
-      <div class="wrap">
-        <div class="center" style="margin-bottom:46px">
-          <span class="eyebrow reveal">Beyond the planets</span>
-          <h2 class="section-title reveal" data-d="1">A universe of wonders</h2>
-          <p class="section-lead reveal" data-d="2">Step outside the solar system and the scale explodes. Here are three of the objects waiting for you.</p>
-        </div>
-        <div class="dso-grid">
-          <article class="dso reveal">
-            <div class="thumb"><div class="art galaxy-1"></div><span class="badge">Galaxy</span></div>
-            <div class="body"><h3>Andromeda Galaxy</h3><div class="dist">2.5 million light-years</div><p>The nearest large galaxy — visible to the naked eye, and drifting toward us for a future collision.</p></div>
-          </article>
-          <article class="dso reveal" data-d="1">
-            <div class="thumb"><div class="art nebula-2"></div><span class="badge">Nebula</span></div>
-            <div class="body"><h3>Pillars of Creation</h3><div class="dist">6,500 light-years</div><p>Towering columns of gas and dust in the Eagle Nebula, where new stars are being born right now.</p></div>
-          </article>
-          <article class="dso reveal" data-d="2">
-            <div class="thumb"><div class="art blackhole"></div><span class="badge">Black Hole</span></div>
-            <div class="body"><h3>Sagittarius A*</h3><div class="dist">26,000 light-years</div><p>The supermassive black hole at the centre of our own galaxy — four million Suns' worth of mass.</p></div>
-          </article>
-        </div>
-        <div class="center reveal" style="margin-top:38px">
-          <a class="btn btn-ghost" href="deep-space.html">See all deep-space objects</a>
-        </div>
-      </div>
-    </section>
+  <!-- ================= scroll cue ================= -->
+  <div class="scroll-cue" id="scrollCue" aria-hidden="true">
+    <span class="mouse"></span>
+    Scroll to travel
+  </div>
 
-    <!-- ================= CTA ================= -->
-    <section class="section">
-      <div class="wrap">
-        <div class="band reveal">
-          <h2>Ready to leave the ground?</h2>
-          <p>Start with the solar system, then keep going until the edge of the observable universe. Everything is free and open source.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="solar-system.html">Start exploring</a>
-            <a class="btn btn-ghost" href="about.html">About this project</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- ================= the track that drives the flight ================= -->
+  <div class="journey-spacer" id="journeySpacer" aria-hidden="true"></div>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
+  <!-- ================= ending ================= -->
+  <section class="journey-end" id="journeyEnd">
     <div class="wrap">
-      <div class="footer-grid">
-        <div class="about">
-          <a class="brand" href="index.html" style="margin-bottom:14px">
-            <span class="orb" aria-hidden="true"></span>
-            <span class="brand-name">Explore <b>Universe</b></span>
-          </a>
-          <p>An interactive, open-source tour of the cosmos. Built with plain HTML, CSS and JavaScript — no frameworks, no trackers.</p>
-        </div>
-        <div>
-          <h4>Explore</h4>
-          <a href="solar-system.html">Solar System</a>
-          <a href="deep-space.html">Deep Space</a>
-          <a href="cosmos.html">Cosmic Scale</a>
-        </div>
-        <div>
-          <h4>Learn</h4>
-          <a href="cosmos.html#timeline-section">Universe Timeline</a>
-          <a href="about.html">About</a>
-          <a href="about.html#sources">Sources</a>
-        </div>
-        <div>
-          <h4>Project</h4>
-          <a href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">GitHub repository</a>
-          <a href="about.html#credits">Credits</a>
-        </div>
+      <span class="eyebrow">Journey complete</span>
+      <h2 class="section-title" style="font-size:clamp(1.9rem,5vw,3.4rem);max-width:760px">
+        You have reached the edge of <span class="grad-text">everything we can see</span>.
+      </h2>
+      <p class="lead">From a few hundred kilometres above the ground to a hundred billion light-years out — that was the whole observable universe, and you crossed it in one scroll. Now go back and look closer at the places you flew past.</p>
+
+      <div class="next">
+        <a href="solar-system.html">
+          <h4>Solar System</h4>
+          <p>Fly the orrery — click any planet for its full profile.</p>
+        </a>
+        <a href="deep-space.html">
+          <h4>Deep Space</h4>
+          <p>Galaxies, nebulae, black holes and exoplanets.</p>
+        </a>
+        <a href="cosmos.html">
+          <h4>Cosmic Scale</h4>
+          <p>Slide from a single planet to the observable universe.</p>
+        </a>
+        <a href="about.html">
+          <h4>About</h4>
+          <p>How the flight was built, and the sources behind it.</p>
+        </a>
       </div>
-      <div class="footer-bottom">
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="restartBtn" type="button">Fly it again</button>
+        <a class="btn btn-ghost" href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+
+      <div class="footer-bottom" style="margin-top:56px">
         <span>© <span data-year>2026</span> Explore Universe · Made for curious minds.</span>
-        <span class="made">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>
-          Data: NASA · ESA
-        </span>
+        <span class="made">Data: NASA · ESA</span>
       </div>
     </div>
-  </footer>
+  </section>
+</div>
+
+<!-- ================= launch overlay ================= -->
+<div class="launch" id="launch">
+  <div class="launch-inner">
+    <span class="badge">Mission 001 · Departure</span>
+    <h1>Explore the <span class="grad-text">Universe</span></h1>
+    <p>You are about to leave Earth. Scroll to travel — the ship will fly past the Moon, the gas giants, a nebula, a dying star and a black hole, all the way to the edge of the observable universe.</p>
+    <button class="btn btn-primary" id="startBtn" type="button">Begin the journey</button>
+    <div class="hint">
+      <span>Scroll to travel</span>
+      <span>Move your mouse to look around</span>
+      <span>Click the rail to jump</span>
+    </div>
+  </div>
 </div>
 
 <script src="js/starfield.js"></script>
 <script src="js/main.js"></script>
+<script src="js/journey.js"></script>
 </body>
 </html>
