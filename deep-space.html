@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Deep Space Gallery — Explore Universe</title>
+<meta name="description" content="Galaxies, nebulae, star clusters, black holes and exoplanets. Filter and search a gallery of the universe's most remarkable objects." />
+<meta name="theme-color" content="#04050d" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas class="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<div class="page">
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="orb" aria-hidden="true"></span>
+        <span class="brand-name">Explore <b>Universe</b></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="solar-system.html">Solar System</a>
+        <a href="deep-space.html">Deep Space</a>
+        <a href="cosmos.html">Cosmos</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary btn-sm" href="cosmos.html">Cosmic scale</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="eyebrow reveal">Deep space</span>
+        <h1 class="reveal" data-d="1">Objects from the <span class="grad-text">far reaches</span></h1>
+        <p class="section-lead reveal" data-d="2">Beyond the planets lie galaxies, glowing nebulae, ancient star clusters, black holes and worlds orbiting distant suns. Filter by type or search by name.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:34px">
+      <div class="wrap">
+        <div class="toolbar reveal">
+          <div class="chips" id="dsoChips" role="group" aria-label="Filter by type"></div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+            <input type="search" id="dsoSearch" placeholder="Search objects…" aria-label="Search deep space objects" />
+          </label>
+        </div>
+        <div class="dso-grid" id="dsoGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="band reveal">
+          <h2>How far is far?</h2>
+          <p>Distances out here are measured in light-years — the distance light travels in a year, about 9.46 trillion kilometres. Slide through the cosmic scale to see how it all stacks up.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="cosmos.html">Open the cosmic scale</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="about">
+          <a class="brand" href="index.html" style="margin-bottom:14px">
+            <span class="orb" aria-hidden="true"></span>
+            <span class="brand-name">Explore <b>Universe</b></span>
+          </a>
+          <p>An interactive, open-source tour of the cosmos. Built with plain HTML, CSS and JavaScript — no frameworks, no trackers.</p>
+        </div>
+        <div><h4>Explore</h4><a href="solar-system.html">Solar System</a><a href="deep-space.html">Deep Space</a><a href="cosmos.html">Cosmic Scale</a></div>
+        <div><h4>Learn</h4><a href="cosmos.html#timeline-section">Universe Timeline</a><a href="about.html">About</a><a href="about.html#sources">Sources</a></div>
+        <div><h4>Project</h4><a href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">GitHub repository</a><a href="about.html#credits">Credits</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Explore Universe · Made for curious minds.</span>
+        <span class="made"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg> Data: NASA · ESA</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/starfield.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/deep-space.js"></script>
+</body>
+</html>
