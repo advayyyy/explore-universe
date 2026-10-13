@@ -1,8 +1,9 @@
 # 🌌 Explore Universe
 
-An interactive, open-source journey through space — right in your browser.
-Watch the planets orbit, drift through nebulae, stare into black holes, and
-measure yourself against the largest things that exist.
+An immersive, scroll-driven **flight through the universe** — right in your
+browser. You don't browse this site, you fly it: leave Earth's orbit, drift
+past the Moon and the gas giants, fly through a nebula, get pulled toward a
+black hole, and end up at the edge of the observable universe.
 
 Built with **plain HTML, CSS and JavaScript**. No frameworks, no build step,
 no dependencies, no tracking.
@@ -13,10 +14,10 @@ no dependencies, no tracking.
 
 | Page | What you can do |
 |------|-----------------|
-| **Home** (`index.html`) | Animated starfield hero, live cosmic stats, and a tour of the site. |
+| **Journey** (`index.html`) | The main event. Press **Begin the journey**, then **scroll to travel**. A live HUD tracks your velocity, distance from Earth and current location. The rail on the right jumps you between the ten waypoints. |
 | **Solar System** (`solar-system.html`) | A live canvas orrery. Planets orbit at their true relative speeds. Hover to identify, click for a full profile. Pause, change speed, toggle orbits and labels. |
 | **Deep Space** (`deep-space.html`) | A filterable, searchable gallery of 15 objects — galaxies, nebulae, star clusters, black holes and exoplanets. |
-| **Cosmos** (`cosmos.html`) | A cosmic-scale slider that steps from a single planet to the observable universe, plus the 13.8-billion-year universe timeline. |
+| **Cosmos** (`cosmos.html`) | A cosmic-scale slider from a single planet to the observable universe, plus the 13.8-billion-year timeline. |
 | **About** (`about.html`) | How it works, and the sources behind the facts. |
 
 Everything is responsive, keyboard-friendly where it matters, and respects
@@ -24,23 +25,37 @@ Everything is responsive, keyboard-friendly where it matters, and respects
 
 ---
 
-## 🚀 Run it locally
+## 🚀 The flight, stop by stop
 
-No installation needed. Either:
+1. **Leaving Earth** — Low Earth Orbit
+2. **Past the Moon** — Cislunar space
+3. **A Million Tumbling Rocks** — the asteroid belt
+4. **The Gas Giants** — Jupiter and Saturn
+5. **Leaving the Solar System** — the Kuiper Belt
+6. **A Stellar Nursery** — the Orion Nebula
+7. **A Dying Giant** — a red supergiant
+8. **Do Not Get Too Close** — Sagittarius A*
+9. **The Milky Way** — the whole galaxy
+10. **The Edge of Everything** — the observable universe
 
-**1. Open it directly** — double-click `index.html`.
+---
 
-**2. Serve it (recommended)** — from the project folder run:
+## 🧠 How the flight works
 
-```bash
-# Python 3
-python -m http.server 8000
-
-# or Node
-npx serve .
-```
-
-Then visit <http://localhost:8000>.
+- Scroll position maps to a **camera depth** along a 14,000-unit track. The
+  camera eases toward it, so motion feels like a ship settling onto a heading.
+- **Stars** live in a wrapping 3D field and streak radially — long trails when
+  you scroll fast, dots when you drift. Streak length is capped so a resting
+  scene stays calm.
+- Each **waypoint** has an "encounter" progress: the moment it passes the
+  camera. Its depth is derived from that, so the scene stays in sync with the
+  narration, and its opacity is driven by progress (fade in before, out after).
+- The **nebula** is a cloud of depth-sorted blobs, knots, sparkle stars and
+  pre-rendered wispy filaments, so you fly *through* it rather than past a
+  flat picture.
+- **Galaxies, black holes and the cosmic web** are generated once into
+  offscreen sprites, then drawn scaled. They are placed far enough ahead that
+  they loom rather than pass.
 
 ---
 
@@ -48,17 +63,19 @@ Then visit <http://localhost:8000>.
 
 ```
 explore-universe/
-├── index.html            # Home
+├── index.html            # The immersive journey
 ├── solar-system.html     # Interactive orrery
 ├── deep-space.html       # Deep-space gallery
 ├── cosmos.html           # Cosmic scale + timeline
 ├── about.html            # About + sources
 ├── 404.html              # Not-found page
 ├── css/
-│   └── style.css         # The whole design system
+│   ├── style.css         # Design system + self-hosted fonts
+│   └── journey.css       # HUD, captions, launch screen, rail
 ├── js/
-│   ├── starfield.js      # Animated starfield engine (Canvas 2D)
+│   ├── starfield.js      # Ambient starfield for the inner pages
 │   ├── main.js           # Nav, scroll reveal, counters, card glow
+│   ├── journey.js        # The flight engine
 │   ├── data.js           # Planet + deep-space object data
 │   ├── solar-system.js   # The orrery engine
 │   ├── deep-space.js     # Gallery rendering + filtering
@@ -67,16 +84,20 @@ explore-universe/
     └── favicon.svg
 ```
 
+Fonts (Space Grotesk + Inter) are **self-hosted via `@font-face`** — no
+external stylesheet, no third-party requests, and the site works offline.
+
 ---
 
 ## 🛠️ Customising
 
-- **Add a planet** — append an object to `PLANETS` in `js/data.js`. Give it a
-  `colour`, `orbit`, `radius` and `period`; the orrery picks it up automatically.
-- **Add a deep-space object** — append to `DEEP_SPACE` in the same file and
-  reuse one of the `.art.*` background classes (or add your own in `style.css`).
-- **Change the theme** — every colour, radius and font lives as a CSS variable
-  at the top of `css/style.css`.
+- **Change the journey** — edit the `STAGES` and `SPEC` arrays in
+  `js/journey.js`. `STAGES` is the narration; `SPEC` places the objects
+  (`enc` is the progress at which each one passes the camera).
+- **Add a planet** — append to `PLANETS` in `js/data.js`.
+- **Add a deep-space object** — append to `DEEP_SPACE` in the same file.
+- **Change the theme** — every colour, radius and font is a CSS variable at
+  the top of `css/style.css`.
 
 ---
 
