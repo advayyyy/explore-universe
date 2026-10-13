@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Solar System Orrery — Explore Universe</title>
+<meta name="description" content="An interactive, animated solar system. Watch the planets orbit at true relative speeds and click any world to read its facts." />
+<meta name="theme-color" content="#04050d" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<canvas class="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<div class="page">
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="orb" aria-hidden="true"></span>
+        <span class="brand-name">Explore <b>Universe</b></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="solar-system.html">Solar System</a>
+        <a href="deep-space.html">Deep Space</a>
+        <a href="cosmos.html">Cosmos</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary btn-sm" href="deep-space.html">Deep space</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="eyebrow reveal">The orrery</span>
+        <h1 class="reveal" data-d="1">The <span class="grad-text">Solar System</span>, in motion</h1>
+        <p class="section-lead reveal" data-d="2">Each planet orbits at its true relative speed — Mercury races, Neptune crawls. Hover to identify a world, click to open its profile, and use the controls to slow things down or hide the orbits.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:34px">
+      <div class="wrap">
+        <div class="solar-layout">
+          <!-- Stage -->
+          <div>
+            <div class="stage reveal" id="stage">
+              <canvas id="solarCanvas" aria-label="Animated solar system"></canvas>
+              <div class="stage-hint">Tip: click a planet to read about it</div>
+            </div>
+            <div class="controls">
+              <button class="ctrl on" id="btnPlay" aria-pressed="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <span id="playLabel">Pause</span>
+              </button>
+              <label class="ctrl">
+                Speed
+                <input type="range" id="speed" min="0" max="6" step="0.1" value="1" aria-label="Orbit speed" />
+                <span id="speedVal" style="min-width:38px;text-align:right">1.0×</span>
+              </label>
+              <button class="ctrl on" id="btnOrbits" aria-pressed="true">Orbits</button>
+              <button class="ctrl on" id="btnLabels" aria-pressed="true">Labels</button>
+            </div>
+          </div>
+
+          <!-- Info panel -->
+          <aside class="info-panel reveal" data-d="1" id="infoPanel">
+            <div class="top">
+              <div class="p-orb" id="pOrb"></div>
+              <div>
+                <div class="type" id="pType">Planet</div>
+                <h2 id="pName">Earth</h2>
+              </div>
+            </div>
+            <p class="desc" id="pDesc"></p>
+            <div class="factlist" id="pFacts"></div>
+            <div class="funfact" id="pFun"></div>
+            <div class="planet-picker" id="picker" aria-label="Choose a planet"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#b9a4ff" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+            <h3>True relative speed</h3>
+            <p>Orbital periods are set to real ratios. Mercury completes a lap in about 88 days; Neptune takes 165 years.</p>
+          </div>
+          <div class="card reveal" data-d="1">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Not to scale</h3>
+            <p>Sizes and distances are compressed so everything fits on screen. The real gaps are thousands of times larger.</p>
+          </div>
+          <div class="card reveal" data-d="2">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+            <h3>Lit by the Sun</h3>
+            <p>Each planet's day side faces the Sun, so you can see the same terminator line a spacecraft would.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="about">
+          <a class="brand" href="index.html" style="margin-bottom:14px">
+            <span class="orb" aria-hidden="true"></span>
+            <span class="brand-name">Explore <b>Universe</b></span>
+          </a>
+          <p>An interactive, open-source tour of the cosmos. Built with plain HTML, CSS and JavaScript — no frameworks, no trackers.</p>
+        </div>
+        <div><h4>Explore</h4><a href="solar-system.html">Solar System</a><a href="deep-space.html">Deep Space</a><a href="cosmos.html">Cosmic Scale</a></div>
+        <div><h4>Learn</h4><a href="cosmos.html#timeline-section">Universe Timeline</a><a href="about.html">About</a><a href="about.html#sources">Sources</a></div>
+        <div><h4>Project</h4><a href="https://github.com/advayyyy/explore-universe" target="_blank" rel="noopener">GitHub repository</a><a href="about.html#credits">Credits</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Explore Universe · Made for curious minds.</span>
+        <span class="made"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg> Data: NASA · ESA</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="js/starfield.js"></script>
+<script src="js/data.js"></script>
+<script src="js/solar-system.js"></script>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var canvas = document.getElementById("solarCanvas");
+  var picker = document.getElementById("picker");
+  if (!canvas || !window.SolarSystem) return;
+
+  var ss = new SolarSystem(canvas, { onSelect: renderInfo });
+
+  /* ---- render the info panel ---- */
+  function renderInfo(p) {
+    document.getElementById("pOrb").style.background =
+      "radial-gradient(circle at 34% 30%, #fff, " + p.colour + " 55%, rgba(2,3,10,0.9))";
+    document.getElementById("pOrb").style.boxShadow = "0 0 34px -6px " + p.glow;
+    document.getElementById("pType").textContent = p.type;
+    document.getElementById("pName").textContent = p.name;
+    document.getElementById("pDesc").textContent = p.desc;
+    document.getElementById("pFacts").innerHTML = p.facts.map(function (f) {
+      return '<div class="row"><span>' + f[0] + '</span><span>' + f[1] + '</span></div>';
+    }).join("");
+    document.getElementById("pFun").innerHTML = "<b>Did you know?</b> " + p.fun;
+    picker.querySelectorAll("button").forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-id") === p.id);
+    });
+  }
+
+  /* ---- build the planet picker ---- */
+  window.PLANETS.forEach(function (p) {
+    var b = document.createElement("button");
+    b.setAttribute("data-id", p.id);
+    b.setAttribute("aria-label", p.name);
+    b.style.background = "radial-gradient(circle at 34% 30%, #fff, " + p.colour + " 55%, rgba(2,3,10,0.85))";
+    b.innerHTML = '<span class="tip">' + p.name + "</span>";
+    b.addEventListener("click", function () { ss.select(p.id); });
+    picker.appendChild(b);
+  });
+
+  /* ---- controls ---- */
+  var btnPlay = document.getElementById("btnPlay");
+  var playLabel = document.getElementById("playLabel");
+  btnPlay.addEventListener("click", function () {
+    ss.setPlaying(!ss.playing);
+    btnPlay.classList.toggle("on", ss.playing);
+    playLabel.textContent = ss.playing ? "Pause" : "Play";
+    btnPlay.setAttribute("aria-pressed", ss.playing ? "true" : "false");
+  });
+
+  var speed = document.getElementById("speed");
+  var speedVal = document.getElementById("speedVal");
+  speed.addEventListener("input", function () {
+    var v = parseFloat(speed.value);
+    ss.setSpeed(v);
+    speedVal.textContent = v.toFixed(1) + "×";
+  });
+
+  var btnOrbits = document.getElementById("btnOrbits");
+  btnOrbits.addEventListener("click", function () {
+    ss.setOrbits(!ss.showOrbits);
+    btnOrbits.classList.toggle("on", ss.showOrbits);
+    btnOrbits.setAttribute("aria-pressed", ss.showOrbits ? "true" : "false");
+  });
+
+  var btnLabels = document.getElementById("btnLabels");
+  btnLabels.addEventListener("click", function () {
+    ss.setLabels(!ss.showLabels);
+    btnLabels.classList.toggle("on", ss.showLabels);
+    btnLabels.setAttribute("aria-pressed", ss.showLabels ? "true" : "false");
+  });
+
+  /* ---- default selection ---- */
+  ss.select("earth");
+})();
+</script>
+</body>
+</html>
